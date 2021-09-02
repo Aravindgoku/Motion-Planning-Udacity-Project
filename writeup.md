@@ -12,7 +12,7 @@ motion_planning script is the updated version of the backyard_flyer_solution scr
 ### Implementing Path Planning Algorithm
 
 #### 1. Global home position
-Global home position is provided in the first line of 'colliders.csv file' and to read & set it in the 'set_home_position' method:
+Global home position is provided in the first line of `colliders.csv file` and to read & set it in the 'set_home_position' method:
 
 ```sh
 with open('colliders.csv', 'r') as file:
@@ -26,7 +26,7 @@ self.set_home_position(float(long0), float(lat0), 0)
 ```
 
 #### 2. Current local position
-To calculate Local position relative to our global home position using the utility function 'global_to_local()':
+To calculate Local position relative to our global home position using the utility function `global_to_local()`:
 
 ```sh
 current_global_pos = self.global_position
@@ -43,27 +43,27 @@ grid_start = (int(current_local_pos[0]) - north_offset, int(current_local_pos[1]
 #### 4. Grid goal position from geodetic coords
 Goal position from randomized geodetic coordinates :
 
-'''sh
+```sh
 goal_global = [-122.4002093, 37.79577523, 0]
 goal_local = global_to_local(goal_global, self.global_home)
 grid_goal = (int(goal_local[0]) - north_offset, int(goal_local[1]) - east_offset)
-''' 
+```
 
 #### 5. A* with valid diagonal motion
-To include diagonal path as one of the valid action in A*, 'class Action(Enum)' and 'valid_actions(grid, current_node)' in 'planning_utils.py' file are to be modified :
+To include diagonal path as one of the valid action in A*, `class Action(Enum)` and `valid_actions(grid, current_node)` in `planning_utils.py` file are to be modified :
 
-In 'class Action(Enum)' :
+In `class Action(Enum)` :
 
-'''sh
+```sh
 NORTH_EAST = (-1, 1, np.sqrt(2))
 SOUTH_EAST = (1, 1, np.sqrt(2))
 SOUTH_WEST = (1, -1, np.sqrt(2))
 NORTH_WEST = (-1, -1, np.sqrt(2))
-'''
+```
 
-In 'valid_actions(grid, current_node)' :
+In `valid_actions(grid, current_node)` :
 
-'''sh
+```sh
 if x - 1 < 0 or y + 1 > m or grid[x - 1, y + 1] == 1:
     valid_actions.remove(Action.NORTH_EAST)
 if x + 1 > n or y + 1 > m or grid[x + 1, y + 1] == 1:
@@ -72,24 +72,27 @@ if x + 1 > n or y - 1 < 0 or grid[x + 1, y - 1] == 1:
     valid_actions.remove(Action.SOUTH_WEST)
 if x - 1 < 0 or y - 1 < 0 or grid[x - 1, y - 1] == 1:
     valid_actions.remove(Action.NORTH_WEST)   
-'''
+```
 
 #### 6. Cull waypoints 
-Collinearity test (area covered between three points below a tolerance value) and Bresenham method (computationally effective to check if obstacles are present in between two points, implemented with the help of udacity forum) is used to prune the path of unnecessary waypoints in 'planning_utils.py' :
+Collinearity test (area covered between three points below a tolerance value) and Bresenham method (computationally effective to check if obstacles are present in between two points, implemented with the help of udacity forum) is used to prune the path of unnecessary waypoints in `planning_utils.py` :
 
-'''sh
+```sh
 def point(p):
     return np.array([p[0], p[1], 1.]).reshape(1, -1)
+
 def collinearity_check(p1, p2, p3, epsilon=1e-4):   
     m = np.concatenate((p1, p2, p3), 0)
     det = np.linalg.det(m)
     return abs(det) < epsilon
+
 def bresenham_check(p11, p12, p21, p22, grid):
     cells = list(bresenham(p11, p12, p21, p22))
     for cell in cells:
         if grid[cell] == 1:
             return False
     return True
+
 def prune_path(path, grid):
     pruned_path = [p for p in path]
     i = 0
@@ -104,7 +107,7 @@ def prune_path(path, grid):
         else:
             i += 1
     return pruned_path
-'''
+```
 
 ### Flight Execution
 #### 1. Does it work?
@@ -113,10 +116,10 @@ It works!!
 1. Grid Based Approximation :
 Goal latitude = 37.79577523, Goal longitude = -122.4002093
 ![Planned Trajectory Image - Grid](./misc/Figure1.png)
-![Grid Path video](./misc/Grid_MP.mp4)
+![Grid Path video](https://www.youtube.com/watch?v=_0JI_yWPvAE&feature=youtu.be)
 
 2. Graph Based Approximation :
 Goal latitude = 37.79577523, Goal longitude = -122.4002093
 ![Planned Trajectory Image - Graph](./misc/Figure2.png)
-![Grid Path video](./misc/Graph_MP.mp4)
+![Graph Path video](./misc/Graph_MP.mp4)
 
