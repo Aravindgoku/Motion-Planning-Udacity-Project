@@ -9,18 +9,6 @@
 
 motion_planning script is the updated version of the backyard_flyer_solution script where instead of sending a fixed predefined trajectory as waypoints, we discretize the state space either as grids or graphs and plan the trajectory for a given start and goal state which is handled in the planning_util script using planning algorithms like A* given the valid actions and other pre-requisites for it to come up with a best trajectory to reach the goal.
 
-These scripts contain a basic planning implementation that includes...
-
-And here's a lovely image of my results (ok this image has nothing to do with it, but it's a nice example of how to include images in your writeup!)
-![Top Down View](./misc/high_up.png)
-
-Here's | A | Snappy | Table
---- | --- | --- | ---
-1 | `highlight` | **bold** | 7.41
-2 | a | b | c
-3 | *italic* | text | 403
-4 | 2 | 3 | abcd
-
 ### Implementing Path Planning Algorithm
 
 #### 1. Global home position
@@ -36,8 +24,6 @@ with open('colliders.csv', 'r') as file:
 
 self.set_home_position(float(long0), float(lat0), 0)
 ```
-And here is a lovely picture of our downtown San Francisco environment from above!
-![Map of SF](./misc/map.png)
 
 #### 2. Current local position
 To calculate Local position relative to our global home position using the utility function 'global_to_local()':
@@ -94,19 +80,16 @@ Collinearity test (area covered between three points below a tolerance value) an
 '''sh
 def point(p):
     return np.array([p[0], p[1], 1.]).reshape(1, -1)
-
 def collinearity_check(p1, p2, p3, epsilon=1e-4):   
     m = np.concatenate((p1, p2, p3), 0)
     det = np.linalg.det(m)
     return abs(det) < epsilon
-
 def bresenham_check(p11, p12, p21, p22, grid):
     cells = list(bresenham(p11, p12, p21, p22))
     for cell in cells:
         if grid[cell] == 1:
             return False
     return True
-
 def prune_path(path, grid):
     pruned_path = [p for p in path]
     i = 0
@@ -129,9 +112,11 @@ It works!!
 
 1. Grid Based Approximation :
 Goal latitude = 37.79577523, Goal longitude = -122.4002093
-[Planned Trajectory Image](./misc/Figure1.png)
+![Planned Trajectory Image - Grid](./misc/Figure1.png)
+![Grid Path video](./misc/Grid_MP.mp4)
 
 2. Graph Based Approximation :
 Goal latitude = 37.79577523, Goal longitude = -122.4002093
-[Planned Trajectory Image](./misc/Figure2.png)
+![Planned Trajectory Image - Graph](./misc/Figure2.png)
+![Grid Path video](./misc/Graph_MP.mp4)
 
