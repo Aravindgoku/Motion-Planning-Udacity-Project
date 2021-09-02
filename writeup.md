@@ -116,7 +116,7 @@ It works!!
 1. Grid Based Approximation :
 Goal latitude = 37.79577523, Goal longitude = -122.4002093
 ![Planned Trajectory Image - Grid](./misc/Figure1.png)
-![Grid Path video](https://www.youtube.com/watch?v=_0JI_yWPvAE&feature=youtu.be)
+[![Grid Path video](https://img.youtube.com/vi/_0JI_yWPvAE/0.jpg)](https://www.youtube.com/watch?v=_0JI_yWPvAE)
 
 2. Graph Based Approximation :
 Goal latitude = 37.79577523, Goal longitude = -122.4002093
