@@ -118,6 +118,7 @@ Goal latitude = 37.79577523, Goal longitude = -122.4002093
 ![Planned Trajectory Image - Grid](./misc/Figure1.png)
 
 Click the following youtube image to checkout the simulation:
+
 [![Grid Path video](https://img.youtube.com/vi/V875lEWQWTg/0.jpg)](https://www.youtube.com/watch?v=V875lEWQWTg)
 
 2. Graph Based Approximation :
@@ -125,5 +126,6 @@ Goal latitude = 37.79577523, Goal longitude = -122.4002093
 ![Planned Trajectory Image - Graph](./misc/Figure2.png)
 
 Click the following youtube image to checkout the simulation:
+
 [![Grid Path video](https://img.youtube.com/vi/_0JI_yWPvAE/0.jpg)](https://www.youtube.com/watch?v=_0JI_yWPvAE)
 
