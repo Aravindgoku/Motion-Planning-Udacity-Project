@@ -1,7 +1,7 @@
 ## Project: 3D Motion Planning
-
 ---
 ### Writeup
+---
 
 ### Starter Code
 
@@ -110,18 +110,20 @@ def prune_path(path, grid):
 ```
 
 ### Flight Execution
-#### 1. Does it work?
-It works!!
+
+To checkout the solution for graph based planning, make sure `is_graph = True` and rest everything should workout fine (only noticable thing is that when the drone starts its takeoff transition inside a wall it tumbles for a quite a bit but it will eventually get back to the path)!!
 
 1. Grid Based Approximation :
 Goal latitude = 37.79577523, Goal longitude = -122.4002093
 ![Planned Trajectory Image - Grid](./misc/Figure1.png)
 
-Click the following youtube image to checkout the video:
-![Grid Path video](https://img.youtube.com/vi/_0JI_yWPvAE/0.jpg)(https://www.youtube.com/watch?v=_0JI_yWPvAE)
+Click the following youtube image to checkout the simulation:
+[![Grid Path video](https://img.youtube.com/vi/V875lEWQWTg/0.jpg)](https://www.youtube.com/watch?v=V875lEWQWTg)
 
 2. Graph Based Approximation :
 Goal latitude = 37.79577523, Goal longitude = -122.4002093
 ![Planned Trajectory Image - Graph](./misc/Figure2.png)
-![Graph Path video](./misc/Graph_MP.mp4)
+
+Click the following youtube image to checkout the simulation:
+[![Grid Path video](https://img.youtube.com/vi/_0JI_yWPvAE/0.jpg)](https://www.youtube.com/watch?v=_0JI_yWPvAE)
 
